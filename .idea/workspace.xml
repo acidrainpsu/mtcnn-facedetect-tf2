@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="24a5af5f-3689-40e7-a94e-f22561a2ef95" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1X6zMcpKd4pHwjUkMW6wKesm8kT" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/test_pictures/images" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\CodeProjects\06_FaceDetection\tensorflow-MTCNN-tf2\test_pictures\images" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\CodeProjects\06_FaceDetection\tensorflow-MTCNN-tf2" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.gen_hard_example">
+    <configuration name="gen_hard_example" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="tensorflow-MTCNN-tf2" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/preprocess" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/preprocess/gen_hard_example.py" />
+      <option name="PARAMETERS" value="24" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="gen_p_net_data" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="tensorflow-MTCNN-tf2" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/preprocess" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/preprocess/gen_p_net_data.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.gen_hard_example" />
+      <item itemvalue="Python.gen_p_net_data" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.gen_hard_example" />
+        <item itemvalue="Python.gen_hard_example" />
+        <item itemvalue="Python.gen_p_net_data" />
+        <item itemvalue="Python.gen_p_net_data" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="24a5af5f-3689-40e7-a94e-f22561a2ef95" name="Default Changelist" comment="" />
+      <created>1580381284226</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1580381284226</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="416" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1581239387848">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="416" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1581239387848" />
+    <state x="898" y="351" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1580734622109">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="898" y="351" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1580734622109" />
+    <state x="249" y="296" key="#xdebugger.XInspectDialog" timestamp="1580735117949">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="249" y="296" key="#xdebugger.XInspectDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1580735117949" />
+    <state x="742" y="276" key="FileChooserDialogImpl" timestamp="1581239370585">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="742" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1581239370585" />
+    <state width="1900" height="483" key="GridCell.Tab.0.bottom" timestamp="1581239564805">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1233" height="200" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580404188332" />
+    <state width="1900" height="483" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1581239564805" />
+    <state width="1900" height="483" key="GridCell.Tab.0.center" timestamp="1581239564805">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1233" height="200" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1580404188332" />
+    <state width="1900" height="483" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1581239564805" />
+    <state width="1900" height="483" key="GridCell.Tab.0.left" timestamp="1581239564805">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1233" height="200" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1580404188332" />
+    <state width="1900" height="483" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1581239564805" />
+    <state width="1900" height="483" key="GridCell.Tab.0.right" timestamp="1581239564805">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1233" height="200" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1580404188332" />
+    <state width="1900" height="483" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1581239564805" />
+    <state width="1900" height="483" key="GridCell.Tab.1.bottom" timestamp="1581239564805">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1900" height="483" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1581239564805" />
+    <state width="1900" height="483" key="GridCell.Tab.1.center" timestamp="1581239564805">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1900" height="483" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1581239564805" />
+    <state width="1900" height="483" key="GridCell.Tab.1.left" timestamp="1581239564805">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1900" height="483" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1581239564805" />
+    <state width="1900" height="483" key="GridCell.Tab.1.right" timestamp="1581239564805">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1900" height="483" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1581239564805" />
+    <state width="473" height="377" key="XDebugger.FullValuePopup" timestamp="1580735113945">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="473" height="377" key="XDebugger.FullValuePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1580735113945" />
+    <state x="668" y="273" key="com.intellij.ide.util.TipDialog" timestamp="1581249265207">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="534" y="216" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1580443597779" />
+    <state x="668" y="273" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1581249265207" />
+    <state x="842" y="130" width="641" height="801" key="find.popup" timestamp="1581174849421">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="842" y="130" width="641" height="801" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1581174849421" />
+    <state x="1165" y="183" width="840" height="856" key="search.everywhere.popup" timestamp="1580825004383">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="932" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1580463104309" />
+    <state x="1165" y="183" width="840" height="856" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1580825004383" />
+  </component>
+</project>
