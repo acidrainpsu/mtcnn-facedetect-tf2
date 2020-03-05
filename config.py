@@ -19,3 +19,17 @@ input_mode = '1'
 test_dir = 'picture/'
 # output dir for test image
 out_path = 'output/'
+
+# epoch num
+end_epochs = [30, 22, 22]  # [30, 22, 22]
+# display interval during training
+display = 100
+# init learning rate
+lr = 0.001
+
+batch_size = 384
+# learning rate decrease as epoch
+LR_EPOCH = [6, 14, 20]
+
+# batch for hard example
+batches = [2048, 256, 16]

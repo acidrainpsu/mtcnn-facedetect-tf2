@@ -8,6 +8,10 @@ __pycache__/
 
 # Distribution / packaging
 .Python
+.idea
+data/p_net/
+data/r_net/
+data/o_net/
 build/
 develop-eggs/
 dist/

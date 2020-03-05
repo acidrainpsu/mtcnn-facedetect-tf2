@@ -1,7 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="24a5af5f-3689-40e7-a94e-f22561a2ef95" name="Default Changelist" comment="" />
+    <list default="true" id="24a5af5f-3689-40e7-a94e-f22561a2ef95" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/o_net/landmark_o_net_aug.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/o_net/o_net_neg.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/o_net/o_net_part.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/o_net/o_net_pos.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/p_net/landmark_p_net_aug.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/p_net/p_net_neg.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/p_net/p_net_part.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/p_net/p_net_pos.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/p_net/train_p_net_landmark.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/r_net/landmark_r_net_aug.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/r_net/r_net_neg.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/r_net/r_net_part.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/r_net/r_net_pos.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/detector/mtcnn_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/detector/mtcnn_detector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/o_net/.data-00000-of-00002" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/o_net/.data-00001-of-00002" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/o_net/.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/o_net/checkpoint" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/p_net/.data-00000-of-00002" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/p_net/.data-00001-of-00002" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/p_net/.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/p_net/checkpoint" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/r_net/.data-00000-of-00002" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/r_net/.data-00001-of-00002" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/r_net/.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/r_net/checkpoint" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocess/gen_hard_example.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocess/gen_hard_example.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocess/gen_landmark_aug.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocess/gen_p_net_data.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocess/gen_p_net_image_list.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocess/gen_tfrecords.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocess/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocess/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/train/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/detector/model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train/train_config.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/train/train_model.py" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,18 +68,23 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/test_pictures/images" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\CodeProjects\06_FaceDetection\tensorflow-MTCNN-tf2\data\p_net" />
       <recent name="D:\CodeProjects\06_FaceDetection\tensorflow-MTCNN-tf2\test_pictures\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\CodeProjects\06_FaceDetection\tensorflow-MTCNN-tf2\detector" />
+      <recent name="D:\CodeProjects\06_FaceDetection\tensorflow-MTCNN-tf2\models" />
+      <recent name="D:\CodeProjects\06_FaceDetection\tensorflow-MTCNN-tf2\models\p_net" />
       <recent name="D:\CodeProjects\06_FaceDetection\tensorflow-MTCNN-tf2" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.gen_hard_example">
+  <component name="RunManager" selected="Python.tmp">
     <configuration name="gen_hard_example" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="tensorflow-MTCNN-tf2" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -79,16 +127,39 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="tmp" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="tensorflow-MTCNN-tf2" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tmp.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.gen_hard_example" />
       <item itemvalue="Python.gen_p_net_data" />
+      <item itemvalue="Python.tmp" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.gen_hard_example" />
-        <item itemvalue="Python.gen_hard_example" />
-        <item itemvalue="Python.gen_p_net_data" />
-        <item itemvalue="Python.gen_p_net_data" />
+        <item itemvalue="Python.tmp" />
+        <item itemvalue="Python.tmp" />
+        <item itemvalue="Python.tmp" />
+        <item itemvalue="Python.tmp" />
+        <item itemvalue="Python.tmp" />
       </list>
     </recent_temporary>
   </component>
@@ -106,22 +177,26 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="478" y="171" key="#Inspections" timestamp="1581610324891">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="478" y="171" key="#Inspections/0.0.1920.1040@0.0.1920.1040" timestamp="1581610324891" />
     <state x="416" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1581239387848">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="416" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1581239387848" />
-    <state x="898" y="351" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1580734622109">
+    <state x="898" y="351" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1582473878242">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="898" y="351" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1580734622109" />
+    <state x="898" y="351" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1582473878242" />
     <state x="249" y="296" key="#xdebugger.XInspectDialog" timestamp="1580735117949">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="249" y="296" key="#xdebugger.XInspectDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1580735117949" />
-    <state x="742" y="276" key="FileChooserDialogImpl" timestamp="1581239370585">
+    <state x="742" y="276" key="FileChooserDialogImpl" timestamp="1583047302266">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="742" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1581239370585" />
+    <state x="742" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1583047302266" />
     <state width="1900" height="483" key="GridCell.Tab.0.bottom" timestamp="1581239564805">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -162,11 +237,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="473" height="377" key="XDebugger.FullValuePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1580735113945" />
-    <state x="668" y="273" key="com.intellij.ide.util.TipDialog" timestamp="1581249265207">
+    <state x="668" y="273" key="com.intellij.ide.util.TipDialog" timestamp="1583332962097">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="534" y="216" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1580443597779" />
-    <state x="668" y="273" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1581249265207" />
+    <state x="668" y="273" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583332962097" />
     <state x="842" y="130" width="641" height="801" key="find.popup" timestamp="1581174849421">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

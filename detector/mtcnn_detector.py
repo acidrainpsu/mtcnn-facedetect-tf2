@@ -4,7 +4,6 @@ import cv2
 import numpy as np
 import sys
 from tqdm import tqdm
-sys.path.append('../')
 from preprocess.utils import convert_to_square
 from config import p_net_size, p_net_stride, r_net_size, o_net_size
 
@@ -20,8 +19,10 @@ def processed_image(image, scale):
     h, w, c = image.shape
     # print('image type = {}, h,w,c = {}-{}-{}, dtype = {}'.format(type(image), h, w, c, image.dtype))
     new_h, new_w = int(h * scale), int(w * scale)
-    new_dim = (new_h, new_w)
+    new_dim = (new_w, new_h)
     img_resized = cv2.resize(image, new_dim, interpolation=cv2.INTER_LINEAR)
+    if len(img_resized.shape) < 3:
+        img_resized = np.expand_dims(img_resized, -1)
     img_resized = (img_resized - 127.5) / 128
     return img_resized
 
@@ -101,7 +102,7 @@ def pad(boxes, img, output_size):
     :param output_size  output size for next net
     :return: cropped boxes
     """
-    height, width, _ = img.shape
+    height, width, channel = img.shape
     num = boxes.shape[0]
     w, h = boxes[:, 2] - boxes[:, 0] + 1, boxes[:, 3] - boxes[:, 1] + 1
     dxl, dyl = np.zeros((num,)), np.zeros((num,))
@@ -133,9 +134,10 @@ def pad(boxes, img, output_size):
     for i in range(num):
         if w[i] < 20 or h[i] < 20 or xl[i] >= width or yl[i] >= height:
             continue
-        c_img = np.zeros((h[i], w[i], 3), dtype=np.uint8)
+        c_img = np.zeros((h[i], w[i], channel), dtype=np.uint8)
         c_img[dyl[i]:dyr[i]+1, dxl[i]:dxr[i]+1, :] = img[yl[i]: yr[i]+1, xl[i]:xr[i]+1, :]
         cropped_img = (cv2.resize(c_img, (output_size, output_size)) - 127.5) / 128
+        cropped_img = np.reshape(cropped_img, (output_size, output_size, channel))
         cropped_images.append(cropped_img)
     if len(cropped_images) == 0:
         return None
@@ -176,11 +178,12 @@ class MtCnnDetector:
         self.thresholds = thresholds
         self.scale_factor = scale_factor
 
-    def detect_face(self, dataset, batch_size=1):
+    def detect_face(self, dataset):
         all_boxes = []
         landmarks = []
-        # dataset = dataset.batch(batch_size=batch_size)
         for batch in tqdm(dataset):
+            if len(batch.shape) < 3:
+                batch = np.expand_dims(batch, -1)
             if self.p_net_detector:
                 if type(batch) != np.ndarray:
                     batch = batch.numpy()
@@ -210,11 +213,15 @@ class MtCnnDetector:
         # print('data shape = {}'.format(batch.get_shape()))
         current_scale = float(p_net_size) / self.min_face_size
         image = batch
+        print("test image shape ", image.shape)
         im_resized = processed_image(image, current_scale)
         current_height, current_width, _ = im_resized.shape
         all_boxes = []
         while min(current_height, current_width) > p_net_size:
             cls_pred, bbox, _ = self.p_net_detector.predict(np.expand_dims(im_resized, axis=0))
+            # print("im_resized size = ", im_resized.shape)
+            # print("class map size = ", cls_pred.shape)
+            # print("predict class last col = ", cls_pred[0, :, -1, 1])
             boxes = generate_bbox(cls_pred[0, :, :, 1], bbox[0],
                                   current_scale, self.thresholds[0])
             current_scale *= self.scale_factor
@@ -230,7 +237,7 @@ class MtCnnDetector:
         if len(all_boxes) == 0:
             return None, None
         all_boxes = np.vstack(all_boxes)
-        keep = py_nms(all_boxes[:, :5], 0.7)
+        keep = py_nms(all_boxes[:, :5], 0.6)
         all_boxes = all_boxes[keep]
         # calc width and height of boxes
         bbw = all_boxes[:, 2] - all_boxes[:, 0] + 1
@@ -253,7 +260,7 @@ class MtCnnDetector:
         :return: box with absolute position
         """
         image = batch
-        h, w, c = image.shape
+        # h, w, c = image.shape
         detects = convert_to_square(detects)
         detects[:, :4] = np.round(detects[:, :4])
         # print('detects shape = {}, detects = {}'.format(detects.shape, detects))
@@ -312,6 +319,8 @@ class MtCnnDetector:
         :param image:
         :return:
         """
+        if len(image.shape) < 3:
+            image = np.expand_dims(image, -1)
         boxes_c, landmark = np.array([]), np.array([])
         if self.p_net_detector:
             boxes, boxes_c = self.detect_p_net(image)

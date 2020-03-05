@@ -14,6 +14,8 @@ def iou(box, boxes):
     :return
         iou value, [n,]
     """
+    if len(boxes) == 0:
+        return 0
     # area
     box_area = (box[2] - box[0] + 1) * (box[3] - box[1] + 1)
     # areas
@@ -76,15 +78,20 @@ def read_annotations(images_dir, label_path):
     return data
 
 
-def load_data_to_dataset(data):
+def load_data_to_dataset(data, channel):
     def gen():
         for img_path in data:
-            yield cv2.imread(img_path)
+            img = cv2.imread(img_path)
+            if channel < 3:
+                img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+            if len(img.shape) < 3:
+                img = np.expand_dims(img, -1)
+            yield img
 
     dataset = tf.data.Dataset.from_generator(
         gen,
         tf.int64,
-        tf.TensorShape((None, None, 3)))
+        tf.TensorShape((None, None, channel)))
     return dataset
 
 

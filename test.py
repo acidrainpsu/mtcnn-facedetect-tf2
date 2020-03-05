@@ -3,9 +3,8 @@
 import os
 import cv2
 import sys
-import numpy as np
 import argparse
-from train.model import p_net, r_net, o_net
+from detector.model import p_net, r_net, o_net
 from detector.mtcnn_detector import MtCnnDetector
 from config import *
 from tensorflow.compat.v1 import ConfigProto
@@ -18,21 +17,23 @@ session = InteractiveSession(config=config)
 
 def test(args):
     detectors = [None, None, None]
-    model_path = ['models/p_net/', 'models/r_net/', 'models/o_net/']  # must follow with /
+    model_path = ['models/p_net/p_net_30', 'models/r_net/r_net_22', 'models/o_net/o_net_22']  # must follow with /
+    gray_flag = args.gray_input
+    channel = 1 if gray_flag else 3
     if args.input_size == o_net_size:
-        detectors[0] = p_net()
+        detectors[0] = p_net(channel)
         detectors[0].load_weights(model_path[0])
-        detectors[1] = r_net()
+        detectors[1] = r_net(channel)
         detectors[1].load_weights(model_path[1])
-        detectors[2] = o_net()
+        detectors[2] = o_net(channel)
         detectors[2].load_weights(model_path[2])
     elif args.input_size == r_net_size:
-        detectors[0] = p_net()
+        detectors[0] = p_net(channel)
         detectors[0].load_weights(model_path[0])
-        detectors[1] = r_net()
+        detectors[1] = r_net(channel)
         detectors[1].load_weights(model_path[1])
     elif args.input_size == p_net_size:
-        detectors[0] = p_net()
+        detectors[0] = p_net(channel)
         detectors[0].load_weights(model_path[0])
     else:
         print('wrong input size!!')
@@ -44,8 +45,11 @@ def test(args):
     for item in os.listdir(input_path):
         img_path = os.path.join(input_path, item)
         img = cv2.imread(img_path)
-        boxes_c, landmarks = mtcnn.detect(img)
-        print('box number = {}, they are {}'.format(boxes_c.shape[0], boxes_c))
+        img_proc = img
+        if gray_flag:
+            img_proc = cv2.cvtColor(img_proc, cv2.COLOR_RGB2GRAY)
+        boxes_c, landmarks = mtcnn.detect(img_proc)
+        # print('box number = {}, they are {}'.format(boxes_c.shape[0], boxes_c))
         for i in range(boxes_c.shape[0]):
             bbox = boxes_c[i, :4]
             score = boxes_c[i, 4]
@@ -68,9 +72,9 @@ def test(args):
 def parse_arguments(argv):
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('input_size', type=int,
+    parser.add_argument('--input_size', type=int,
                         help='The input size for specific net')
-
+    parser.add_argument('--gray_input', type=bool, default=True)
     return parser.parse_args(argv)
 
 

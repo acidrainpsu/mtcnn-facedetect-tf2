@@ -1,18 +1,12 @@
 # coding=utf-8
 
-import sys
-sys.path.append('../')
-import numpy as np
-import argparse
 import os
-import cv2
 import pickle
 from tqdm import tqdm
-from utils import *
-import train.train_config as tc
-from train.model import p_net, r_net, o_net
+from preprocess.utils import *
+from detector.model import p_net, r_net
 from detector.mtcnn_detector import MtCnnDetector
-from config import p_net_size, r_net_size, o_net_size, \
+from config import r_net_size, o_net_size, \
     min_face, p_net_stride, face_thresholds
 
 
@@ -21,67 +15,57 @@ assert len(physical_devices) > 0, "Not enough GPU hardware devices available"
 tf.config.experimental.set_memory_growth(physical_devices[0], True)
 
 
-def main(args):
+def gen_hard_example(size, gray_flag, data_dir, model_paths):
     """
-    generate next
-    :param args:
+    generate hard example for next net
     :return:
     """
-    size = args.input_size
+    channel = 1 if gray_flag else 3
     # models
-    model_path = ['../models/p_net/', '../models/r_net/', '../models/o_net/']
-    if size == p_net_size:
+
+    if size == r_net_size:
         net = 'r_net'
         save_size = r_net_size
-    elif size == r_net_size:
+    elif size == o_net_size:
         net = 'o_net'
         save_size = o_net_size
     else:
         return
     # images path
-    image_dir = '../data/WIDER_train/images/'
-    output_dir = '../data/%s' % net
-    neg_dir = os.path.join(output_dir, 'negative')
-    pos_dir = os.path.join(output_dir, 'positive')
-    part_dir = os.path.join(output_dir, 'partial')
-    for dir_path in [neg_dir, pos_dir, part_dir]:
-        if not os.path.exists(dir_path):
-            os.makedirs(dir_path)
+    image_dir = os.path.join(data_dir, 'WIDER_train/images/')
+    output_dir = os.path.join(data_dir, net)
     detectors = [None, None, None]
-    net_p = p_net()
-    net_p.load_weights(model_path[0])
+    net_p = p_net(channel)
+    net_p.load_weights(model_paths[0])
     detectors[0] = net_p
-    if size == r_net_size:
-        net_r = r_net()
-        net_r.load_weights(model_path[1])
+    if size == o_net_size:
+        net_r = r_net(channel)
+        net_r.load_weights(model_paths[1])
         detectors[1] = net_r
         print("r_net loaded!")
-    wider_face_file = '../data/wider_face_train_bbx_gt.txt'
+    wider_face_file = os.path.join(data_dir, 'wider_face_train_bbx_gt.txt')
     data = read_annotations(image_dir, wider_face_file)
     mtcnn = MtCnnDetector(detectors, min_face, p_net_stride, face_thresholds)
-    save_dir = '../data'
-    save_detects_file = os.path.join(save_dir, net + '_detections.pkl')
+    save_detects_file = os.path.join(output_dir, net + '_detections.pkl')
     if not os.path.exists(save_detects_file):
         print('loading data to dataset')
-        loaded_dataset = load_data_to_dataset(data['images'])
+        loaded_dataset = load_data_to_dataset(data['images'], channel)
         print('starting to detect')
-        detect_result, _ = mtcnn.detect_face(loaded_dataset.take(3000))  # fixme Not only 3000
+        detect_result, _ = mtcnn.detect_face(loaded_dataset)  # fixme Not only 3000
         print('detect over')
         with open(save_detects_file, 'wb') as f:
             pickle.dump(detect_result, f, 1)
     print('start to generate hard image')
-    save_hard_example(save_size, data, neg_dir, pos_dir, part_dir, save_detects_file)
+    save_hard_example(save_size, data, save_detects_file, output_dir)
 
 
-def save_hard_example(save_size, data, neg_dir, pos_dir, part_dir, saved_file):
+def save_hard_example(save_size, data, saved_file, output_dir):
     """
     crop original image using previous net outputted boxes for next net
     :param save_size:
     :param data:
-    :param neg_dir: dir to put neg images
-    :param pos_dir:
-    :param part_dir:
     :param saved_file:
+    :param output_dir:
     :return:
     """
     img_list = data['images']
@@ -95,7 +79,7 @@ def save_hard_example(save_size, data, neg_dir, pos_dir, part_dir, saved_file):
         return
 
     neg_label_file, pos_label_file, part_label_file = \
-        ["../data/%s/%s_%s.txt" % (net, net, i) for i in ['neg', 'pos', 'part']]
+        [output_dir+"/train_%s_%s.txt" % (net, i) for i in ['neg', 'pos', 'part']]
     neg_file, pos_file, part_file = \
         [open(file, 'w') for file in [neg_label_file, pos_label_file, part_label_file]]
     # read detect results
@@ -105,6 +89,7 @@ def save_hard_example(save_size, data, neg_dir, pos_dir, part_dir, saved_file):
         len(detected_box), num_img))
     neg_idx, pos_idx, part_idx = 0, 0, 0
     proc_idx = 0
+    assert len(img_list) == len(detected_box) == len(gt_boxes_list), "wrong number!"
     for img_idx, detect_box, gt_box in tqdm(zip(img_list, detected_box, gt_boxes_list)):
         gt_box = np.array(gt_box, dtype=np.float32).reshape(-1, 4)
         proc_idx += 1
@@ -113,6 +98,8 @@ def save_hard_example(save_size, data, neg_dir, pos_dir, part_dir, saved_file):
         img = cv2.imread(img_idx)
         detect_box = convert_to_square(detect_box)
         detect_box[:, :4] = np.round(detect_box[:, :4])
+        for f in [pos_file, part_file, neg_file]:
+            f.write(img_idx + '\n')
         neg_num = 0
         # print("proc_idx = {}, gt_box = {}".format(proc_idx, gt_box))
         for box in detect_box:
@@ -129,9 +116,7 @@ def save_hard_example(save_size, data, neg_dir, pos_dir, part_dir, saved_file):
             resized_img = cv2.resize(cropped_img, (save_size, save_size),
                                      interpolation=cv2.INTER_LINEAR)
             if np.max(iou_value) < 0.3 and neg_num < 60:
-                save_file = os.path.join(neg_dir, "%s.jpg" % neg_idx)
-                neg_file.write(save_file + ' 0\n')
-                cv2.imwrite(save_file, resized_img)
+                neg_file.write("%d %d %d %d 0\n" % (xl, yl, xr, yr))
                 neg_idx += 1
                 neg_num += 1
             else:
@@ -144,16 +129,12 @@ def save_hard_example(save_size, data, neg_dir, pos_dir, part_dir, saved_file):
                 offset_xr = (xr_gt - xr) / float(width)
                 offset_yr = (yr_gt - yr) / float(height)
                 if np.max(iou_value) >= 0.65:
-                    save_file = os.path.join(pos_dir, '%s.jpg' % pos_idx)
-                    pos_file.write(save_file + ' 1 %.2f %.2f %.2f %.2f\n' %
-                                   (offset_xl, offset_yl, offset_xr, offset_yr))
-                    cv2.imwrite(save_file, resized_img)
+                    pos_file.write('%d %d %d %d 1 %.2f %.2f %.2f %.2f\n' %
+                                   (xl, yl, xr, yr, offset_xl, offset_yl, offset_xr, offset_yr))
                     pos_idx += 1
                 elif np.max(iou_value) >= 0.4:
-                    save_file = os.path.join(part_dir, '%s.jpg' % part_idx)
-                    part_file.write(save_file + ' -1 %.2f %.2f %.2f %.2f\n' %
-                                    (offset_xl, offset_yl, offset_xr, offset_yr))
-                    cv2.imwrite(save_file, resized_img)
+                    part_file.write('%d %d %d %d -1 %.2f %.2f %.2f %.2f\n' %
+                                    (xl, yl, xr, yr, offset_xl, offset_yl, offset_xr, offset_yr))
                     part_idx += 1
         if proc_idx >= min(len(detected_box), num_img):
             break
@@ -162,14 +143,14 @@ def save_hard_example(save_size, data, neg_dir, pos_dir, part_dir, saved_file):
     pos_file.close()
 
 
-def parse_arguments(argv):
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument('input_size', type=int,
-                        help='The input size for specific net')
-
-    return parser.parse_args(argv)
-
-
-if __name__ == '__main__':
-    main(parse_arguments(sys.argv[1:]))
+# def parse_arguments(argv):
+#     parser = argparse.ArgumentParser()
+#
+#     parser.add_argument('--input_size', type=int,
+#                         help='The input size for specific net')
+#     parser.add_argument('--gray_input', type=bool, default=True)
+#     return parser.parse_args(argv)
+#
+#
+# if __name__ == '__main__':
+#     main(parse_arguments(sys.argv[1:]))
