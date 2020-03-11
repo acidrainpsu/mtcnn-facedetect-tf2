@@ -231,7 +231,7 @@ class MtCnnDetector:
             if boxes.size == 0:
                 continue
             # non maximum suppress
-            keep = py_nms(boxes[:, :5], 0.5)
+            keep = py_nms(boxes[:, :5], 0.6)
             boxes = boxes[keep]
             all_boxes.append(boxes)
         if len(all_boxes) == 0:

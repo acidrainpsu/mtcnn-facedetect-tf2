@@ -78,7 +78,7 @@ def train(args):
                     step + 1, max_step, accuracy, cls_loss, bbox_loss, lm_loss, loss_value))
         if step * batch_size > sample_num_sum * (epoch_idx+1):
             epoch_idx += 1
-            if epoch_idx > epoch-3:
+            if epoch_idx > epoch-2:
                 model.save_weights(model_save_path.format(epoch_idx))
         if step > max_step:
             break
